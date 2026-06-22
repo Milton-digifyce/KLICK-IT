@@ -129,7 +129,6 @@
     <section id="home"
         class="relative min-h-[90vh] md:min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden bg-pastel-gradient">
 
-        <!-- Mobile-only: full-screen video background -->
         <video autoplay muted loop playsinline
             class="lg:hidden absolute inset-0 w-full h-full object-cover z-0">
             <source
@@ -138,7 +137,6 @@
         </video>
         <div class="lg:hidden absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70 z-0 pointer-events-none"></div>
 
-        <!-- Mobile-only: bouncing button pinned above bottom fade -->
         <div class="lg:hidden absolute bottom-36 inset-x-0 z-30 px-6 flex justify-center">
             <a href="#contact"
                 class="animate-bounce inline-flex items-center justify-center gap-2 bg-brandPrimary text-white px-8 py-4 rounded-full font-bold text-sm shadow-2xl shadow-purple-900/40 w-full max-w-xs">
@@ -146,7 +144,6 @@
             </a>
         </div>
 
-        <!-- Desktop-only: full content grid -->
         <div class="hidden lg:block relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="grid lg:grid-cols-12 gap-10 xl:gap-16 items-center">
 
@@ -248,8 +245,6 @@
 
             </div>
         </div>
-        <!-- end desktop-only block -->
-
         <div class="absolute bottom-0 w-full h-32 bg-gradient-to-t from-white to-transparent z-20"></div>
     </section>
 
@@ -277,12 +272,20 @@
                             <img src="assets/tamilnaduremovebg.png" alt="Map of Tamil Nadu" class="w-full h-full object-contain opacity-80" />
                         </div>
 
-                        <button class="city-pin group absolute top-[20%] left-[70%] flex flex-col items-center gap-1 focus:outline-none" data-id="chennai">
+                        <button class="city-pin group absolute top-[17%] left-[75%] flex flex-col items-center gap-1 focus:outline-none" data-id="chennai">
                             <div class="relative flex h-5 w-5 items-center justify-center">
                                 <span class="absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75 group-hover:animate-ping transition-all duration-300"></span>
                                 <span class="pin-dot relative inline-flex rounded-full h-3 w-3 bg-gray-400 group-hover:bg-purple-600 transition-colors"></span>
                             </div>
                             <span class="pin-label text-xs font-bold text-gray-500 group-hover:text-purple-700 transition-colors">Chennai</span>
+                        </button>
+
+                        <button class="city-pin group absolute top-[43%] left-[72%] flex flex-col items-center gap-1 focus:outline-none" data-id="pondicherry">
+                            <div class="relative flex h-5 w-5 items-center justify-center">
+                                <span class="absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-0 group-hover:opacity-75 group-hover:animate-ping transition-all duration-300"></span>
+                                <span class="pin-dot relative inline-flex rounded-full h-3 w-3 bg-gray-400 group-hover:bg-purple-600 transition-colors"></span>
+                            </div>
+                            <span class="pin-label text-xs font-bold text-gray-500 group-hover:text-purple-700 transition-colors">Pondicherry</span>
                         </button>
 
                         <button class="city-pin active-pin group absolute top-[36%] left-[47%] flex flex-col items-center gap-1 focus:outline-none" data-id="salem">
@@ -309,7 +312,7 @@
                             <span class="pin-label text-xs font-bold text-gray-500 group-hover:text-purple-700 transition-colors">Coimbatore</span>
                         </button>
 
-                        <button class="city-pin group absolute top-[55%] left-[56%] flex flex-col items-center gap-1 focus:outline-none" data-id="trichy">
+                        <button class="city-pin group absolute top-[50%] left-[55%] flex flex-col items-center gap-1 focus:outline-none" data-id="trichy">
                             <div class="relative flex h-5 w-5 items-center justify-center">
                                 <span class="absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-0 group-hover:opacity-75 group-hover:animate-ping transition-all duration-300"></span>
                                 <span class="pin-dot relative inline-flex rounded-full h-3 w-3 bg-gray-400 group-hover:bg-purple-600 transition-colors"></span>
@@ -317,7 +320,7 @@
                             <span class="pin-label text-xs font-bold text-gray-500 group-hover:text-purple-700 transition-colors">Trichy</span>
                         </button>
 
-                        <button class="city-pin group absolute top-[76%] left-[46%] flex flex-col items-center gap-1 focus:outline-none" data-id="madurai">
+                        <button class="city-pin group absolute top-[65%] left-[42%] flex flex-col items-center gap-1 focus:outline-none" data-id="madurai">
                             <div class="relative flex h-5 w-5 items-center justify-center">
                                 <span class="absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-0 group-hover:opacity-75 group-hover:animate-ping transition-all duration-300"></span>
                                 <span class="pin-dot relative inline-flex rounded-full h-3 w-3 bg-gray-400 group-hover:bg-purple-600 transition-colors"></span>
@@ -394,15 +397,16 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const locationsData = {
-            salem:      { name: 'Salem',      date: 'Jun 27, 2026', venue: 'Radisson',     video: 'assets/salem.mp4' },
-            chennai:    { name: 'Chennai',     date: 'Jun 28, 2026', venue: 'Park Inn',     video: 'assets/chennai.mp4' },
-            erode:      { name: 'Erode',       date: 'TBA',          venue: 'TBA',           video: 'assets/salem.mp4' },
-            coimbatore: { name: 'Coimbatore',  date: 'Jul 05, 2026', venue: 'Zone by Park', video: 'assets/coimbatore.mp4' },
-            trichy:     { name: 'Trichy',      date: 'Jul 03, 2026', venue: 'SRM',          video: 'assets/trichy.mp4' },
-            madurai:    { name: 'Madurai',     date: 'Jul 04, 2026', venue: 'Pandian',      video: 'assets/madurai.mp4' }
+            salem:       { name: 'Salem',      date: 'Jun 27, 2026', venue: 'Radisson',     video: 'assets/salem.mp4' },
+            chennai:     { name: 'Chennai',    date: 'Jun 28, 2026', venue: 'Park Inn',     video: 'assets/chennai.mp4' },
+            erode:       { name: 'Erode',      date: 'TBA',          venue: 'TBA',             video: 'assets/Erode.webm' },
+            coimbatore:  { name: 'Coimbatore', date: 'Jul 05, 2026', venue: 'Zone by Park', video: 'assets/coimbatore.mp4' },
+            trichy:      { name: 'Trichy',     date: 'Jul 03, 2026', venue: 'SRM',          video: 'assets/trichy.mp4' },
+            madurai:     { name: 'Madurai',    date: 'Jul 04, 2026', venue: 'Pandian',       video: 'assets/madurai.mp4' },
+            pondicherry: { name: 'Pondicherry', date: 'Jun 29, 2026', venue: 'Accord',        video: 'assets/Podicherry.webm' }
         };
 
-        const cityOrder = ['salem', 'chennai', 'erode', 'coimbatore', 'trichy', 'madurai'];
+        const cityOrder = ['salem', 'chennai', 'pondicherry', 'erode', 'coimbatore', 'trichy', 'madurai'];
         let currentIndex = 0;
         let autoTimer = null;
 
@@ -453,6 +457,8 @@
                 displayVenue.textContent = data.venue;
                 mainVideo.pause();
                 videoSource.setAttribute('src', data.video);
+                const ext = data.video.split('.').pop().toLowerCase();
+                videoSource.setAttribute('type', ext === 'webm' ? 'video/webm' : 'video/mp4');
                 mainVideo.load();
                 mainVideo.play();
                 overlay.classList.remove('opacity-0');
@@ -460,20 +466,30 @@
         }
 
         function startAutoPlay() {
+            clearInterval(autoTimer);
             autoTimer = setInterval(() => {
                 currentIndex = (currentIndex + 1) % cityOrder.length;
                 activateCity(cityOrder[currentIndex]);
-            }, 3000);
+            }, 5000);
         }
 
-        // Manual pin click – reset timer so next auto-advance is 3 s after click
+        // When video ends after a manual click, resume auto-cycling from the next city
+        mainVideo.addEventListener('ended', () => {
+            if (!autoTimer) {
+                currentIndex = (currentIndex + 1) % cityOrder.length;
+                activateCity(cityOrder[currentIndex]);
+                startAutoPlay();
+            }
+        });
+
+        // Manual pin click – play full video, pause auto-cycle until video ends
         pins.forEach(pin => {
             pin.addEventListener('click', () => {
                 const cityId = pin.getAttribute('data-id');
                 currentIndex = cityOrder.indexOf(cityId);
                 activateCity(cityId);
                 clearInterval(autoTimer);
-                startAutoPlay();
+                autoTimer = null;
             });
         });
 
@@ -495,81 +511,201 @@
 
     <section id="expo" class="bg-white py-16 md:py-24 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="bg-pastel-gradient border border-white rounded-3xl overflow-hidden shadow-2xl relative">
-                <div class="grid lg:grid-cols-2 relative z-10">
-                    <div class="p-8 sm:p-10 lg:p-16 gs-reveal">
-                        <div
-                            class="inline-flex items-center gap-2 px-3 py-1 rounded bg-white text-brandSecondary text-xs font-bold mb-6 uppercase tracking-wider shadow-sm">
-                            <span class="w-2 h-2 rounded-full bg-brandSecondary animate-pulse"></span> Signature Event
-                        </div>
-                        <h2 class="text-3xl md:text-5xl font-extrabold text-brandDark mb-4 tracking-tight">Medico Expo
-                            2026</h2>
-                        <p class="text-gray-700 mb-8 max-w-md leading-relaxed font-medium">
-                            Join India's premier medical education summit. Meet delegates from top international
-                            universities and secure on-the-spot admission assessments.
-                        </p>
 
-                        <div class="flex flex-col sm:flex-row gap-6 mb-10">
-                            <div class="flex items-start gap-3">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-brandPrimary flex-shrink-0">
-                                    <i class="fa-solid fa-calendar-day"></i>
-                                </div>
-                                <div>
-                                    <p id="event-date" class="text-brandDark font-bold">Loading Date...</p>
-                                    <p class="text-xs text-gray-600 font-medium">09:00 AM - 06:00 PM</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-brandPrimary flex-shrink-0">
-                                    <i class="fa-solid fa-location-crosshairs"></i>
-                                </div>
-                                <div>
-                                    <p id="event-city" class="text-brandDark font-bold">Loading City...</p>
-                                    <p id="event-venue" class="text-xs text-gray-600 font-medium">Loading Venue...</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-4 gap-2 sm:gap-3 max-w-sm mb-10">
-                            <div
-                                class="bg-white/60 backdrop-blur-sm border border-white rounded-xl p-2 sm:p-3 text-center shadow-sm">
-                                <span id="days" class="block text-xl sm:text-2xl font-bold text-brandDark">00</span>
-                                <span
-                                    class="text-[9px] sm:text-[10px] text-gray-600 font-bold uppercase tracking-widest">Days</span>
-                            </div>
-                            <div
-                                class="bg-white/60 backdrop-blur-sm border border-white rounded-xl p-2 sm:p-3 text-center shadow-sm">
-                                <span id="hours" class="block text-xl sm:text-2xl font-bold text-brandDark">00</span>
-                                <span
-                                    class="text-[9px] sm:text-[10px] text-gray-600 font-bold uppercase tracking-widest">Hrs</span>
-                            </div>
-                            <div
-                                class="bg-white/60 backdrop-blur-sm border border-white rounded-xl p-2 sm:p-3 text-center shadow-sm">
-                                <span id="mins" class="block text-xl sm:text-2xl font-bold text-brandDark">00</span>
-                                <span
-                                    class="text-[9px] sm:text-[10px] text-gray-600 font-bold uppercase tracking-widest">Min</span>
-                            </div>
-                            <div
-                                class="bg-white/60 backdrop-blur-sm border border-white rounded-xl p-2 sm:p-3 text-center shadow-sm">
-                                <span id="secs" class="block text-xl sm:text-2xl font-bold text-brandDark">00</span>
-                                <span
-                                    class="text-[9px] sm:text-[10px] text-gray-600 font-bold uppercase tracking-widest">Sec</span>
-                            </div>
-                        </div>
-
-                        <a href="#contact"
-                            class="inline-block text-center w-full sm:w-auto bg-brandDark text-white px-8 py-3.5 rounded-md font-bold hover:bg-gray-800 transition-colors shadow-lg shadow-gray-900/10">
-                            Free Registration
-                        </a>
-                    </div>
-
-                    <div class="relative h-full min-h-[400px] hidden lg:block gs-reveal">
-                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
-                            class="absolute inset-0 w-full h-full object-cover rounded-r-3xl" alt="Medical Expo">
-                    </div>
+            <div class="text-center mb-10 gs-reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandPrimary/10 text-brandPrimary text-xs font-bold mb-4 uppercase tracking-wider border border-brandPrimary/20">
+                    <span class="w-2 h-2 rounded-full bg-brandPrimary animate-pulse"></span> 7 Cities · 2026 Tour
                 </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-brandDark mb-3 tracking-tight">Medico Expo 2026</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium">
+                    India's premier medical education summit — spanning 7 cities across Tamil Nadu. Meet delegates from top international universities and secure on-the-spot admission assessments.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 gs-reveal">
+
+                <div class="group bg-surface border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="w-9 h-9 rounded-full bg-brandPrimary/10 text-brandPrimary flex items-center justify-center font-extrabold text-sm">01</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">Upcoming</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-brandDark mb-1">Erode</h3>
+                    <p class="text-brandPrimary font-bold text-sm mb-3">June 26, 2026</p>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-building text-brandPrimary/60 w-4"></i>
+                            <span class="font-medium">Turmeric Hotel</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-brandPrimary/60 w-4"></i>
+                            <span>09:00 AM – 06:00 PM</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-brandPrimary/60 w-4"></i>
+                            <span>Erode, Tamil Nadu</span>
+                        </div>
+                    </div>
+                    <button type="button" class="expo-reg-btn mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-brandPrimary hover:text-brandSecondary transition-colors">
+                        Register Free <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="group bg-surface border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="w-9 h-9 rounded-full bg-brandPrimary/10 text-brandPrimary flex items-center justify-center font-extrabold text-sm">02</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">Upcoming</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-brandDark mb-1">Salem</h3>
+                    <p class="text-brandPrimary font-bold text-sm mb-3">June 27, 2026</p>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-building text-brandPrimary/60 w-4"></i>
+                            <span class="font-medium">Radisson</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-brandPrimary/60 w-4"></i>
+                            <span>09:00 AM – 06:00 PM</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-brandPrimary/60 w-4"></i>
+                            <span>Salem, Tamil Nadu</span>
+                        </div>
+                    </div>
+                    <button type="button" class="expo-reg-btn mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-brandPrimary hover:text-brandSecondary transition-colors">
+                        Register Free <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="group bg-surface border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="w-9 h-9 rounded-full bg-brandPrimary/10 text-brandPrimary flex items-center justify-center font-extrabold text-sm">03</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">Upcoming</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-brandDark mb-1">Chennai</h3>
+                    <p class="text-brandPrimary font-bold text-sm mb-3">June 28, 2026</p>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-building text-brandPrimary/60 w-4"></i>
+                            <span class="font-medium">Park Inn</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-brandPrimary/60 w-4"></i>
+                            <span>09:00 AM – 06:00 PM</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-brandPrimary/60 w-4"></i>
+                            <span>Chennai, Tamil Nadu</span>
+                        </div>
+                    </div>
+                    <button type="button" class="expo-reg-btn mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-brandPrimary hover:text-brandSecondary transition-colors">
+                        Register Free <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="group bg-surface border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="w-9 h-9 rounded-full bg-brandPrimary/10 text-brandPrimary flex items-center justify-center font-extrabold text-sm">04</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">Upcoming</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-brandDark mb-1">Pondicherry</h3>
+                    <p class="text-brandPrimary font-bold text-sm mb-3">June 29, 2026</p>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-building text-brandPrimary/60 w-4"></i>
+                            <span class="font-medium">Accord</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-brandPrimary/60 w-4"></i>
+                            <span>09:00 AM – 06:00 PM</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-brandPrimary/60 w-4"></i>
+                            <span>Pondicherry, India</span>
+                        </div>
+                    </div>
+                    <button type="button" class="expo-reg-btn mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-brandPrimary hover:text-brandSecondary transition-colors">
+                        Register Free <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="group bg-surface border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="w-9 h-9 rounded-full bg-brandPrimary/10 text-brandPrimary flex items-center justify-center font-extrabold text-sm">05</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">Upcoming</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-brandDark mb-1">Trichy</h3>
+                    <p class="text-brandPrimary font-bold text-sm mb-3">July 03, 2026</p>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-building text-brandPrimary/60 w-4"></i>
+                            <span class="font-medium">SRM</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-brandPrimary/60 w-4"></i>
+                            <span>09:00 AM – 06:00 PM</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-brandPrimary/60 w-4"></i>
+                            <span>Trichy, Tamil Nadu</span>
+                        </div>
+                    </div>
+                    <button type="button" class="expo-reg-btn mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-brandPrimary hover:text-brandSecondary transition-colors">
+                        Register Free <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="group bg-surface border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="w-9 h-9 rounded-full bg-brandPrimary/10 text-brandPrimary flex items-center justify-center font-extrabold text-sm">06</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">Upcoming</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-brandDark mb-1">Madurai</h3>
+                    <p class="text-brandPrimary font-bold text-sm mb-3">July 04, 2026</p>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-building text-brandPrimary/60 w-4"></i>
+                            <span class="font-medium">Pandian</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-brandPrimary/60 w-4"></i>
+                            <span>09:00 AM – 06:00 PM</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-brandPrimary/60 w-4"></i>
+                            <span>Madurai, Tamil Nadu</span>
+                        </div>
+                    </div>
+                    <button type="button" class="expo-reg-btn mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-brandPrimary hover:text-brandSecondary transition-colors">
+                        Register Free <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="group bg-surface border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="w-9 h-9 rounded-full bg-brandPrimary/10 text-brandPrimary flex items-center justify-center font-extrabold text-sm">07</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">Upcoming</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-brandDark mb-1">Coimbatore</h3>
+                    <p class="text-brandPrimary font-bold text-sm mb-3">July 05, 2026</p>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-building text-brandPrimary/60 w-4"></i>
+                            <span class="font-medium">Zone by Park</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-brandPrimary/60 w-4"></i>
+                            <span>09:00 AM – 06:00 PM</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-brandPrimary/60 w-4"></i>
+                            <span>Coimbatore, Tamil Nadu</span>
+                        </div>
+                    </div>
+                    <button type="button" class="expo-reg-btn mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-brandPrimary hover:text-brandSecondary transition-colors">
+                        Register Free <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
             </div>
         </div>
     </section>
@@ -714,17 +850,14 @@
                 </div>
             </div>
 
-            <!-- Circular Infographic -->
             <div class="relative">
 
-                <!-- Connector line – desktop only -->
                 <div class="hidden lg:block absolute top-[72px] left-[12.5%] right-[12.5%] h-0.5 z-0"
                     style="background: linear-gradient(to right, #8B33E8, #DE247C, #10b981, #3b82f6);">
                 </div>
 
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6 relative z-10">
 
-                    <!-- 01 -->
                     <div class="flex flex-col items-center text-center group gs-reveal">
                         <div class="relative mb-5">
                             <div class="w-36 h-36 rounded-full bg-white border-4 border-purple-200 group-hover:border-brandPrimary flex flex-col items-center justify-center shadow-lg group-hover:shadow-purple-200/60 group-hover:shadow-2xl group-hover:scale-105 transition-all duration-300">
@@ -737,7 +870,6 @@
                         <p class="text-xs text-gray-500 leading-relaxed max-w-[160px]">Sit down with seasoned medical admission experts to find the best universities for your NEET score and budget.</p>
                     </div>
 
-                    <!-- 02 -->
                     <div class="flex flex-col items-center text-center group gs-reveal">
                         <div class="relative mb-5">
                             <div class="w-36 h-36 rounded-full bg-white border-4 border-pink-200 group-hover:border-brandSecondary flex flex-col items-center justify-center shadow-lg group-hover:shadow-pink-200/60 group-hover:shadow-2xl group-hover:scale-105 transition-all duration-300">
@@ -750,7 +882,6 @@
                         <p class="text-xs text-gray-500 leading-relaxed max-w-[160px]">Discover hidden financial aid. Get your profile evaluated on the spot for exclusive tuition fee waivers.</p>
                     </div>
 
-                    <!-- 03 -->
                     <div class="flex flex-col items-center text-center group gs-reveal">
                         <div class="relative mb-5">
                             <div class="w-36 h-36 rounded-full bg-white border-4 border-emerald-200 group-hover:border-emerald-500 flex flex-col items-center justify-center shadow-lg group-hover:shadow-emerald-200/60 group-hover:shadow-2xl group-hover:scale-105 transition-all duration-300">
@@ -763,7 +894,6 @@
                         <p class="text-xs text-gray-500 leading-relaxed max-w-[160px]">Speak directly with authorized delegates and deans from top MCI & WHO recognised institutions abroad.</p>
                     </div>
 
-                    <!-- 04 -->
                     <div class="flex flex-col items-center text-center group gs-reveal">
                         <div class="relative mb-5">
                             <div class="w-36 h-36 rounded-full bg-white border-4 border-blue-200 group-hover:border-blue-500 flex flex-col items-center justify-center shadow-lg group-hover:shadow-blue-200/60 group-hover:shadow-2xl group-hover:scale-105 transition-all duration-300">
@@ -842,7 +972,7 @@
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div class="space-y-1">
-                                    <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Work Email</label>
+                                    <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Email</label>
                                     <input id="workEmail" type="email" required
                                         class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium"
                                         placeholder="john@example.com">
@@ -855,19 +985,11 @@
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                                <div class="space-y-1">
-                                    <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Area of Interest</label>
-                                    <input id="interest" type="text" required value="Medical Admission"
-                                        class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium"
-                                        placeholder="e.g. Medical Admission">
-                                </div>
-                                <div class="space-y-1">
-                                    <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">City</label>
-                                    <input id="city" type="text" required
-                                        class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium"
-                                        placeholder="e.g. Mumbai">
-                                </div>
+                            <div class="space-y-1">
+                                <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">City</label>
+                                <input id="city" type="text" required
+                                    class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium"
+                                    placeholder="e.g. Mumbai">
                             </div>
 
                             <div class="pt-4">
@@ -1049,7 +1171,6 @@
 
         const revealElements = document.querySelectorAll(".gs-reveal");
         revealElements.forEach((elem) => {
-            // Skips scroll-triggered entry animations for everything inside the expo-benefits section
             if (elem.closest('#expo-benefits')) return;
 
             gsap.fromTo(elem, {
@@ -1145,19 +1266,28 @@
                 const upcomingEvent = eventSchedule.find(event => new Date(event.isoDate) > now);
 
                 if (!upcomingEvent) {
-                    document.getElementById('event-date').textContent = "Tour Concluded";
-                    document.getElementById('event-city').textContent = "TBD";
-                    document.getElementById('event-venue').textContent = "Stay tuned for updates";
+                    const eventDate = document.getElementById('event-date');
+                    const eventCity = document.getElementById('event-city');
+                    const eventVenue = document.getElementById('event-venue');
+                    
+                    if (eventDate) eventDate.textContent = "Tour Concluded";
+                    if (eventCity) eventCity.textContent = "TBD";
+                    if (eventVenue) eventVenue.textContent = "Stay tuned for updates";
 
                     ['days', 'hours', 'mins', 'secs'].forEach(id => {
-                        document.getElementById(id).textContent = "00";
+                        const el = document.getElementById(id);
+                        if (el) el.textContent = "00";
                     });
                     return;
                 }
 
-                document.getElementById('event-date').textContent = upcomingEvent.displayDate;
-                document.getElementById('event-city').textContent = upcomingEvent.city;
-                document.getElementById('event-venue').textContent = upcomingEvent.venue;
+                const eventDateEl = document.getElementById('event-date');
+                const eventCityEl = document.getElementById('event-city');
+                const eventVenueEl = document.getElementById('event-venue');
+
+                if (eventDateEl) eventDateEl.textContent = upcomingEvent.displayDate;
+                if (eventCityEl) eventCityEl.textContent = upcomingEvent.city;
+                if (eventVenueEl) eventVenueEl.textContent = upcomingEvent.venue;
 
                 if (countdownInterval) clearInterval(countdownInterval);
 
@@ -1178,17 +1308,41 @@
                     const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-                    document.getElementById('days').textContent = String(days).padStart(2, '0');
-                    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                    document.getElementById('mins').textContent = String(minutes).padStart(2, '0');
-                    document.getElementById('secs').textContent = String(seconds).padStart(2, '0');
+                    const dEl = document.getElementById('days');
+                    const hEl = document.getElementById('hours');
+                    const mEl = document.getElementById('mins');
+                    const sEl = document.getElementById('secs');
+
+                    if(dEl) dEl.textContent = String(days).padStart(2, '0');
+                    if(hEl) hEl.textContent = String(hours).padStart(2, '0');
+                    if(mEl) mEl.textContent = String(minutes).padStart(2, '0');
+                    if(sEl) sEl.textContent = String(seconds).padStart(2, '0');
                 }, 1000);
             }
 
             initDynamicEvent();
 
+            // Mark past event cards as Completed
+            (function markPastEvents() {
+                const now = new Date();
+                eventSchedule.forEach(event => {
+                    if (new Date(event.isoDate) <= now) {
+                        document.querySelectorAll('#expo .grid > div').forEach(card => {
+                            const title = card.querySelector('h3');
+                            if (title && title.textContent.trim().toLowerCase().startsWith(event.city.toLowerCase().slice(0, 4))) {
+                                const badge = card.querySelector('span.rounded-full.border');
+                                if (badge) {
+                                    badge.textContent = 'Completed';
+                                    badge.className = 'text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200';
+                                }
+                            }
+                        });
+                    }
+                });
+            })();
+
             const form = document.getElementById('expertForm');
-            const webAppUrl = 'https://script.google.com/macros/s/AKfycbwH4pXZjJ3UL7kEaEPi8f9bItMKI7-N8uGU9PngO01zy1GIbSv59iuQIS4ha0mtCfOT/exec';
+            const webAppUrl = 'https://script.google.com/macros/s/AKfycbxaecXo-MEHKmavszeroonZAJbpkhdLZD74TRULHbHPDwiMwdgO_5SHxpiS_YeooYix/exec';
 
             if (form) {
                 form.addEventListener('submit', async (e) => {
@@ -1205,7 +1359,7 @@
                         lastName: document.getElementById('lastName').value,
                         email: document.getElementById('workEmail').value,
                         phone: document.getElementById('phone').value,
-                        interest: document.getElementById('interest').value
+                        city: document.getElementById('city').value // Added missing city field
                     };
 
                     try {
@@ -1247,8 +1401,148 @@
                     }
                 });
             }
+
+            // ── Registration modal ──────────────────────────────────────
+            const regModal = document.getElementById('regModal');
+            const regModalClose = document.getElementById('regModalClose');
+            const regModalBackdrop = document.getElementById('regModalBackdrop');
+            const modalRegForm = document.getElementById('modalRegForm');
+            const mCity = document.getElementById('m-city');
+            const modalSubmitBtn = document.getElementById('modalSubmitBtn');
+
+            function openRegModal(city = '') {
+                if (mCity) mCity.value = city;
+                if (regModal) {
+                    regModal.classList.remove('hidden');
+                    regModal.classList.add('flex');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closeRegModal() {
+                if (regModal) {
+                    regModal.classList.add('hidden');
+                    regModal.classList.remove('flex');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            if (regModalClose) regModalClose.addEventListener('click', closeRegModal);
+            if (regModalBackdrop) regModalBackdrop.addEventListener('click', closeRegModal);
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRegModal(); });
+
+            // Universal intercept for all anchor tags linking to #contact
+            document.querySelectorAll('a[href="#contact"]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    openRegModal('');
+                });
+            });
+
+            // City cards → read city from the card's h3
+            document.querySelectorAll('.expo-reg-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const card = btn.closest('.group');
+                    const city = card ? card.querySelector('h3')?.textContent.trim() : '';
+                    openRegModal(city);
+                });
+            });
+
+            // Modal form submission
+            if (modalRegForm) {
+                modalRegForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const originalText = modalSubmitBtn.innerText;
+                    modalSubmitBtn.innerText = 'Sending...';
+                    modalSubmitBtn.disabled = true;
+
+                    const payload = {
+                        firstName: document.getElementById('m-firstName').value,
+                        lastName:  document.getElementById('m-lastName').value,
+                        email:     document.getElementById('m-email').value,
+                        phone:     document.getElementById('m-phone').value,
+                        city:      mCity.value
+                    };
+
+                    try {
+                        await fetch(webAppUrl, {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                            body: JSON.stringify(payload)
+                        });
+                        modalRegForm.reset();
+                        modalSubmitBtn.innerText = 'Submitted ✓';
+                        modalSubmitBtn.classList.replace('bg-brandDark', 'bg-emerald-600');
+                        setTimeout(() => {
+                            closeRegModal();
+                            modalSubmitBtn.innerText = originalText;
+                            modalSubmitBtn.classList.replace('bg-emerald-600', 'bg-brandDark');
+                            modalSubmitBtn.disabled = false;
+                        }, 2000);
+                    } catch (err) {
+                        modalSubmitBtn.innerText = 'Error! Try Again';
+                        modalSubmitBtn.classList.replace('bg-brandDark', 'bg-red-600');
+                        setTimeout(() => {
+                            modalSubmitBtn.innerText = originalText;
+                            modalSubmitBtn.classList.replace('bg-red-600', 'bg-brandDark');
+                            modalSubmitBtn.disabled = false;
+                        }, 3000);
+                    }
+                });
+            }
         });
     </script>
+<div id="regModal" class="hidden fixed inset-0 z-[300] items-center justify-center p-4">
+    <div id="regModalBackdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg z-10 overflow-hidden">
+        <div class="bg-pastel-gradient px-8 pt-8 pb-6 border-b border-gray-100">
+            <button id="regModalClose" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 text-gray-500 hover:text-gray-800 transition-colors shadow-sm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <p class="text-[10px] font-bold text-brandSecondary uppercase tracking-wider mb-1">Medico Expo 2026</p>
+            <h3 class="text-2xl font-extrabold text-brandDark">Register for Free</h3>
+            <p class="text-sm text-gray-500 mt-1">An advisor will call you back within 30 minutes.</p>
+        </div>
+        <form id="modalRegForm" class="px-8 py-6 space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-1">
+                    <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">First Name</label>
+                    <input id="m-firstName" type="text" required placeholder="John"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium">
+                </div>
+                <div class="space-y-1">
+                    <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Last Name</label>
+                    <input id="m-lastName" type="text" required placeholder="Doe"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium">
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-1">
+                    <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Email</label>
+                    <input id="m-email" type="email" required placeholder="john@example.com"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium">
+                </div>
+                <div class="space-y-1">
+                    <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Phone Number</label>
+                    <input id="m-phone" type="tel" required placeholder="+91"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium">
+                </div>
+            </div>
+            <div class="space-y-1">
+                <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">City</label>
+                <input id="m-city" type="text" required placeholder="e.g. Mumbai"
+                    class="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium">
+            </div>
+            <button id="modalSubmitBtn" type="submit"
+                class="w-full bg-brandDark text-white py-4 rounded-lg font-bold tracking-wide hover:bg-gray-800 transition-colors shadow-md">
+                Request Callback
+            </button>
+            <p class="text-center text-[11px] text-gray-400">By submitting, you agree to our Terms of Service and Privacy Policy.</p>
+        </form>
+    </div>
+</div>
+
 </body>
 
 </html>
