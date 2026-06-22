@@ -111,7 +111,7 @@
 <body
     class="font-sans text-gray-700 bg-white antialiased overflow-x-hidden selection:bg-brandPrimary selection:text-white">
 
-    <nav class="fixed w-full z-50 transition-all duration-500 border-b border-transparent" id="navbar">
+    <nav class="fixed w-full z-50 transition-all duration-500 border-b border-transparent max-lg:bg-white/75 max-lg:backdrop-blur-md max-lg:border-gray-100/60 max-lg:shadow-sm" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20 sm:h-24">
                 <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
@@ -265,11 +265,18 @@
                     </p>
                 </div>
 
-                <div class="w-full mt-auto">
-                    <div class="relative w-full max-w-[380px] mx-auto aspect-square bg-slate-50/50 rounded-2xl border border-gray-100 shadow-inner overflow-hidden">
+                <div class="w-full mt-auto relative" id="mapWrapper">
+                    <div class="relative w-full max-w-[380px] mx-auto aspect-square bg-slate-50/50 rounded-2xl border border-gray-100 shadow-inner overflow-hidden" id="mapContainer">
 
                         <div class="absolute inset-0 pointer-events-none select-none">
                             <img src="assets/tamilnaduremovebg.png" alt="Map of Tamil Nadu" class="w-full h-full object-contain opacity-80" />
+                        </div>
+
+                        <!-- Fixed info card – top-left of map -->
+                        <div id="mapInfoCard" class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-100 shadow-lg px-3 py-2.5 pointer-events-none min-w-[100px]">
+                            <p id="infoCity" class="text-xs font-extrabold text-brandDark leading-tight"></p>
+                            <p id="infoDate" class="text-[11px] font-bold text-brandPrimary leading-tight mt-0.5"></p>
+                            <p id="infoVenue" class="text-[10px] text-gray-500 font-medium leading-tight mt-0.5"></p>
                         </div>
 
                         <button class="city-pin group absolute top-[17%] left-[75%] flex flex-col items-center gap-1 focus:outline-none" data-id="chennai">
@@ -330,6 +337,7 @@
 
                     </div>
                 </div>
+
             </div>
 
             <div class="w-full lg:flex-1 order-2 flex flex-col lg:pt-8">
@@ -462,6 +470,11 @@
                 mainVideo.load();
                 mainVideo.play();
                 overlay.classList.remove('opacity-0');
+
+                // Update fixed info card in the top-left of the map
+                document.getElementById('infoCity').textContent  = data.name;
+                document.getElementById('infoDate').textContent  = data.date;
+                document.getElementById('infoVenue').textContent = data.venue;
             }, 250);
         }
 
@@ -922,6 +935,83 @@
         </div>
     </section>
 
+    <!-- ── Gallery Section ─────────────────────────────────────────── -->
+    <section id="gallery" class="py-16 md:py-24 bg-white border-t border-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Header -->
+            <div class="text-center mb-10 gs-reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandPrimary/10 text-brandPrimary text-xs font-bold mb-4 uppercase tracking-wider border border-brandPrimary/20">
+                    <span class="w-2 h-2 rounded-full bg-brandPrimary animate-pulse"></span> Past Expos
+                </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brandDark mb-3 tracking-tight">Real Events. Real Students.</h2>
+                <p class="text-gray-500 max-w-xl mx-auto text-sm font-medium leading-relaxed">
+                    Thousands of students have already attended our expos. Here's a glimpse from the ground.
+                </p>
+            </div>
+
+            <!-- Bento-box collage: 4 cols × 3 rows on desktop, 2 cols on mobile — every cell filled -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 auto-rows-[160px] lg:auto-rows-[190px] gs-reveal">
+
+                <!-- img 1: large hero cell (2 cols × 2 rows on desktop) -->
+                <button class="gallery-item lg:col-span-2 lg:row-span-2 overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/1.webp">
+                    <img src="assets/1.webp" alt="Expo photo 1" class="w-full h-full object-cover block" loading="lazy" />
+                </button>
+
+                <!-- img 2 -->
+                <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/2.webp">
+                    <img src="assets/2.webp" alt="Expo photo 2" class="w-full h-full object-cover block" loading="lazy" />
+                </button>
+
+                <!-- img 3 -->
+                <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/3.webp">
+                    <img src="assets/3.webp" alt="Expo photo 3" class="w-full h-full object-cover block" loading="lazy" />
+                </button>
+
+                <!-- img 4 -->
+                <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/4.webp">
+                    <img src="assets/4.webp" alt="Expo photo 4" class="w-full h-full object-cover block" loading="lazy" />
+                </button>
+
+                <!-- img 5 -->
+                <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/5.webp">
+                    <img src="assets/5.webp" alt="Expo photo 5" class="w-full h-full object-cover block" loading="lazy" />
+                </button>
+
+                <!-- img 6 -->
+                <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/6.webp">
+                    <img src="assets/6.webp" alt="Expo photo 6" class="w-full h-full object-cover block" loading="lazy" />
+                </button>
+
+                <!-- img 7 -->
+                <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/7.webp">
+                    <img src="assets/7.webp" alt="Expo photo 7" class="w-full h-full object-cover block" loading="lazy" />
+                </button>
+
+                <!-- img 8: wide cell (2 cols on desktop) -->
+                <button class="gallery-item lg:col-span-2 overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/8.webp">
+                    <img src="assets/8.webp" alt="Expo photo 8" class="w-full h-full object-cover block" loading="lazy" />
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="hidden fixed inset-0 z-[400] items-center justify-center p-4">
+        <div id="lightboxBackdrop" class="absolute inset-0 bg-black/85 backdrop-blur-sm"></div>
+        <button id="lightboxClose" class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/40 text-white rounded-full transition-colors">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+        <button id="lightboxPrev" class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/40 text-white rounded-full transition-colors">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button id="lightboxNext" class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/40 text-white rounded-full transition-colors">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <img id="lightboxImg" src="" alt="Expo photo" class="relative max-w-full max-h-[90vh] rounded-2xl shadow-2xl object-contain" />
+    </div>
+
 
 <section id="contact" class="py-20 md:py-28 bg-white relative">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -987,9 +1077,17 @@
 
                             <div class="space-y-1">
                                 <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">City</label>
-                                <input id="city" type="text" required
-                                    class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium"
-                                    placeholder="e.g. Mumbai">
+                                <select id="city" required
+                                    class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium">
+                                    <option value="" disabled selected>Select your city</option>
+                                    <option value="Salem">Salem</option>
+                                    <option value="Chennai">Chennai</option>
+                                    <option value="Erode">Erode</option>
+                                    <option value="Coimbatore">Coimbatore</option>
+                                    <option value="Trichy">Trichy</option>
+                                    <option value="Madurai">Madurai</option>
+                                    <option value="Pondicherry">Pondicherry</option>
+                                </select>
                             </div>
 
                             <div class="pt-4">
@@ -1491,6 +1589,47 @@
                     }
                 });
             }
+
+            // ── Gallery lightbox ────────────────────────────────────────
+            const galleryItems  = document.querySelectorAll('.gallery-item');
+            const lightbox      = document.getElementById('lightbox');
+            const lightboxImg   = document.getElementById('lightboxImg');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxBack  = document.getElementById('lightboxBackdrop');
+            const lightboxPrev  = document.getElementById('lightboxPrev');
+            const lightboxNext  = document.getElementById('lightboxNext');
+            const srcs = Array.from(galleryItems).map(b => b.dataset.src);
+            let currentPhoto = 0;
+
+            function openLightbox(index) {
+                currentPhoto = index;
+                lightboxImg.src = srcs[currentPhoto];
+                lightbox.classList.remove('hidden');
+                lightbox.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeLightbox() {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+            function showPhoto(index) {
+                currentPhoto = (index + srcs.length) % srcs.length;
+                lightboxImg.src = srcs[currentPhoto];
+            }
+
+            galleryItems.forEach((btn, i) => btn.addEventListener('click', () => openLightbox(i)));
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxBack.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', () => showPhoto(currentPhoto - 1));
+            lightboxNext.addEventListener('click', () => showPhoto(currentPhoto + 1));
+            document.addEventListener('keydown', e => {
+                if (!lightbox.classList.contains('hidden')) {
+                    if (e.key === 'Escape')    closeLightbox();
+                    if (e.key === 'ArrowLeft') showPhoto(currentPhoto - 1);
+                    if (e.key === 'ArrowRight')showPhoto(currentPhoto + 1);
+                }
+            });
         });
     </script>
 <div id="regModal" class="hidden fixed inset-0 z-[300] items-center justify-center p-4">
@@ -1502,7 +1641,6 @@
             </button>
             <p class="text-[10px] font-bold text-brandSecondary uppercase tracking-wider mb-1">Medico Expo 2026</p>
             <h3 class="text-2xl font-extrabold text-brandDark">Register for Free</h3>
-            <p class="text-sm text-gray-500 mt-1">An advisor will call you back within 30 minutes.</p>
         </div>
         <form id="modalRegForm" class="px-8 py-6 space-y-4">
             <div class="grid grid-cols-2 gap-4">
@@ -1531,8 +1669,17 @@
             </div>
             <div class="space-y-1">
                 <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">City</label>
-                <input id="m-city" type="text" required placeholder="e.g. Mumbai"
+                <select id="m-city" required
                     class="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 text-brandDark focus:outline-none focus:border-brandPrimary transition-colors text-sm font-medium">
+                    <option value="" disabled selected>Select your city</option>
+                    <option value="Salem">Salem</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Erode">Erode</option>
+                    <option value="Coimbatore">Coimbatore</option>
+                    <option value="Trichy">Trichy</option>
+                    <option value="Madurai">Madurai</option>
+                    <option value="Pondicherry">Pondicherry</option>
+                </select>
             </div>
             <button id="modalSubmitBtn" type="submit"
                 class="w-full bg-brandDark text-white py-4 rounded-lg font-bold tracking-wide hover:bg-gray-800 transition-colors shadow-md">
