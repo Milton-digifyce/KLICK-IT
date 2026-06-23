@@ -104,6 +104,26 @@
         #cardSlider::-webkit-scrollbar {
             display: none;
         }
+
+        /* ── Global: tighter section spacing ── */
+        section {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important;
+        }
+
+        /* ── Mobile: even tighter + slightly smaller base font ── */
+        @media (max-width: 1023px) {
+            section {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            body {
+                font-size: 0.875rem;
+            }
+            h1 { font-size: 1.75rem !important; }
+            h2 { font-size: 1.375rem !important; }
+            h3 { font-size: 1.1rem  !important; }
+        }
     </style>
 </head>
 
@@ -742,7 +762,7 @@
                             class="text-transparent bg-clip-text bg-gradient-to-r from-brandPrimary to-brandSecondary">deliver.</span>
                     </h2>
                     <p class="text-gray-600 font-medium text-lg mb-8 leading-relaxed">
-                        Numbers speak louder than words. For over a decade, Medico Expo has been the definitive bridge
+                        Numbers speak louder than words. For over a decade, Klick Edu has been the definitive bridge
                         between aspiring medical students and world-class educational institutions.
                     </p>
 
@@ -923,9 +943,15 @@
 
             <div
                 class="mt-16 pt-10 border-t border-gray-200/60 flex flex-col sm:flex-row items-center justify-between gap-6 gs-reveal">
-                <p class="text-xs text-gray-500 font-bold uppercase tracking-widest text-center sm:text-left">
-                    Limited passes available for each city
-                </p>
+                <div class="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                    <span class="flex-shrink-0 w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                    <div>
+                        <p class="text-xs font-extrabold text-red-600 uppercase tracking-widest leading-tight">Limited passes available for each city</p>
+                        <p class="text-[11px] text-red-500 font-semibold mt-0.5">
+                            Offer expires in&nbsp;<span id="benefitsCountdown" class="font-extrabold">10:00</span>
+                        </p>
+                    </div>
+                </div>
                 <a href="#contact"
                     class="bg-brandPrimary text-white px-10 py-4 rounded-lg font-bold text-base hover:bg-brandDark transition-colors tracking-wide shadow-md w-full sm:w-auto text-center">
                     Free Registration
@@ -943,7 +969,7 @@
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandPrimary/10 text-brandPrimary text-xs font-bold mb-4 uppercase tracking-wider border border-brandPrimary/20">
                     <span class="w-2 h-2 rounded-full bg-brandPrimary animate-pulse"></span> Past Expos
                 </div>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-brandDark mb-3 tracking-tight">Real Events. Real Students.</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brandDark mb-3 tracking-tight">1000 + students garaduated as a doctor</h2>
                 <p class="text-gray-500 max-w-xl mx-auto text-sm font-medium leading-relaxed">
                     Thousands of students have already attended our expos. Here's a glimpse from the ground.
                 </p>
@@ -1684,12 +1710,18 @@
         </form>
     </div>
 </div>
-<!-- Fixed bottom Free Registration button (visible after expo section) -->
-<div id="fixedRegBtn" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[250] transition-all duration-500 opacity-0 translate-y-10 pointer-events-none">
+<!-- Fixed bottom Free Registration button (visible after home section) -->
+<div id="fixedRegBtn" class="fixed bottom-0 left-0 right-0 z-[250] transition-all duration-500 opacity-0 translate-y-full pointer-events-none px-0 sm:px-4 sm:bottom-5 sm:left-1/2 sm:right-auto sm:w-auto sm:-translate-x-1/2">
     <a href="#contact"
-        class="inline-flex items-center gap-2 bg-brandPrimary hover:bg-brandDark text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-2xl shadow-purple-900/40 transition-colors whitespace-nowrap">
-        <i class="fa-solid fa-pen-to-square"></i>
-        Free Registration
+        class="flex items-center justify-center gap-3 bg-brandPrimary hover:bg-brandDark text-white w-full sm:w-auto sm:rounded-full px-8 py-4 font-bold text-sm shadow-2xl shadow-purple-900/40 transition-colors">
+        <span class="flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Free Registration
+        </span>
+        <span class="flex items-center gap-1 bg-white/20 rounded-full px-3 py-1 text-xs font-bold tracking-widest">
+            <i class="fa-solid fa-clock text-[10px]"></i>
+            <span id="fixedCountdown">10:00</span>
+        </span>
     </a>
 </div>
 
@@ -1697,23 +1729,56 @@
     (function () {
         const btn      = document.getElementById('fixedRegBtn');
         const homeSec  = document.getElementById('home');
+        const display  = document.getElementById('fixedCountdown');
         if (!btn || !homeSec) return;
 
+        // Scroll show/hide
         function update() {
-            const expoBottom = homeSec.getBoundingClientRect().bottom;
-            if (expoBottom < 0) {
-                // scrolled past expo section — show
-                btn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+            if (homeSec.getBoundingClientRect().bottom < 0) {
+                btn.classList.remove('opacity-0', 'translate-y-full', 'pointer-events-none');
                 btn.classList.add('opacity-100', 'translate-y-0');
             } else {
-                // above or inside expo section — hide
-                btn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                btn.classList.add('opacity-0', 'translate-y-full', 'pointer-events-none');
                 btn.classList.remove('opacity-100', 'translate-y-0');
             }
         }
-
         window.addEventListener('scroll', update, { passive: true });
         update();
+
+        // Shared 10-minute countdown — persists across refreshes for first 5 page loads
+        const benefitsDisplay = document.getElementById('benefitsCountdown');
+        const storedEnd   = parseInt(localStorage.getItem('regTimerEnd')   || '0');
+        const storedCount = parseInt(localStorage.getItem('regTimerCount') || '0');
+        const nowMs       = Date.now();
+        const newCount    = storedCount + 1;
+        let endTime;
+        if (storedEnd > nowMs && newCount <= 5) {
+            // Timer still running and within 5 refreshes — continue from stored time
+            endTime = storedEnd;
+            localStorage.setItem('regTimerCount', newCount);
+        } else {
+            // Start fresh
+            endTime = nowMs + 10 * 60 * 1000;
+            localStorage.setItem('regTimerEnd',   endTime);
+            localStorage.setItem('regTimerCount', '1');
+        }
+
+        function tick() {
+            const remaining = Math.max(0, Math.floor((endTime - Date.now()) / 1000));
+            const m = Math.floor(remaining / 60);
+            const s = remaining % 60;
+            const formatted = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+            if (display)         display.textContent         = formatted;
+            if (benefitsDisplay) benefitsDisplay.textContent = formatted;
+            if (remaining === 0) {
+                // Reset after expiry
+                endTime = Date.now() + 10 * 60 * 1000;
+                localStorage.setItem('regTimerEnd',   endTime);
+                localStorage.setItem('regTimerCount', '0');
+            }
+        }
+        tick();
+        setInterval(tick, 1000);
     })();
 </script>
 
