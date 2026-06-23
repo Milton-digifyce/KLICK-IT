@@ -10,12 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <script>
+    <script>    
         tailwind.config = {
             theme: {
                 extend: {
@@ -408,7 +406,7 @@
         const locationsData = {
             salem:       { name: 'Salem',      date: 'Jun 27, 2026', venue: 'Radisson',     video: 'assets/salem.mp4' },
             chennai:     { name: 'Chennai',    date: 'Jun 28, 2026', venue: 'Park Inn',     video: 'assets/chennai.mp4' },
-            erode:       { name: 'Erode',      date: 'TBA',          venue: 'TBA',             video: 'assets/Erode.webm' },
+            erode:       { name: 'Erode',      date: 'Jun 26, 2026', venue: 'TBA',             video: 'assets/Erode.webm' },
             coimbatore:  { name: 'Coimbatore', date: 'Jul 05, 2026', venue: 'Zone by Park', video: 'assets/coimbatore.mp4' },
             trichy:      { name: 'Trichy',     date: 'Jul 03, 2026', venue: 'SRM',          video: 'assets/trichy.mp4' },
             madurai:     { name: 'Madurai',    date: 'Jul 04, 2026', venue: 'Pandian',       video: 'assets/madurai.mp4' },
@@ -954,43 +952,39 @@
             <!-- Bento-box collage: 4 cols × 3 rows on desktop, 2 cols on mobile — every cell filled -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 auto-rows-[160px] lg:auto-rows-[190px] gs-reveal">
 
-                <!-- img 1: large hero cell (2 cols × 2 rows on desktop) -->
-                <button class="gallery-item lg:col-span-2 lg:row-span-2 overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/1.webp">
+                <!-- img 1: full width on mobile, 2×2 hero on desktop -->
+                <button class="gallery-item col-span-2 lg:col-span-2 lg:row-span-2 overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/1.webp">
                     <img src="assets/1.webp" alt="Expo photo 1" class="w-full h-full object-cover block" loading="lazy" />
                 </button>
 
-                <!-- img 2 -->
+                <!-- img 2: 50% on mobile -->
                 <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/2.webp">
                     <img src="assets/2.webp" alt="Expo photo 2" class="w-full h-full object-cover block" loading="lazy" />
                 </button>
 
-                <!-- img 3 -->
+                <!-- img 3: 50% on mobile -->
                 <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/3.webp">
                     <img src="assets/3.webp" alt="Expo photo 3" class="w-full h-full object-cover block" loading="lazy" />
                 </button>
 
-                <!-- img 4 -->
-                <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/4.webp">
+                <!-- img 4–8: hidden on mobile, visible on desktop -->
+                <button class="gallery-item hidden lg:block overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/4.webp">
                     <img src="assets/4.webp" alt="Expo photo 4" class="w-full h-full object-cover block" loading="lazy" />
                 </button>
 
-                <!-- img 5 -->
-                <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/5.webp">
+                <button class="gallery-item hidden lg:block overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/5.webp">
                     <img src="assets/5.webp" alt="Expo photo 5" class="w-full h-full object-cover block" loading="lazy" />
                 </button>
 
-                <!-- img 6 -->
-                <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/6.webp">
+                <button class="gallery-item hidden lg:block overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/6.webp">
                     <img src="assets/6.webp" alt="Expo photo 6" class="w-full h-full object-cover block" loading="lazy" />
                 </button>
 
-                <!-- img 7 -->
-                <button class="gallery-item overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/7.webp">
+                <button class="gallery-item hidden lg:block overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/7.webp">
                     <img src="assets/7.webp" alt="Expo photo 7" class="w-full h-full object-cover block" loading="lazy" />
                 </button>
 
-                <!-- img 8: wide cell (2 cols on desktop) -->
-                <button class="gallery-item lg:col-span-2 overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/8.webp">
+                <button class="gallery-item hidden lg:col-span-2 lg:block overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:brightness-110 transition-all duration-300 focus:outline-none" data-src="assets/8.webp">
                     <img src="assets/8.webp" alt="Expo photo 8" class="w-full h-full object-cover block" loading="lazy" />
                 </button>
 
@@ -1690,6 +1684,39 @@
         </form>
     </div>
 </div>
+<!-- Fixed bottom Free Registration button (visible after expo section) -->
+<div id="fixedRegBtn" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[250] transition-all duration-500 opacity-0 translate-y-10 pointer-events-none">
+    <a href="#contact"
+        class="inline-flex items-center gap-2 bg-brandPrimary hover:bg-brandDark text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-2xl shadow-purple-900/40 transition-colors whitespace-nowrap">
+        <i class="fa-solid fa-pen-to-square"></i>
+        Free Registration
+    </a>
+</div>
+
+<script>
+    (function () {
+        const btn      = document.getElementById('fixedRegBtn');
+        const homeSec  = document.getElementById('home');
+        if (!btn || !homeSec) return;
+
+        function update() {
+            const expoBottom = homeSec.getBoundingClientRect().bottom;
+            if (expoBottom < 0) {
+                // scrolled past expo section — show
+                btn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                btn.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                // above or inside expo section — hide
+                btn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                btn.classList.remove('opacity-100', 'translate-y-0');
+            }
+        }
+
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+    })();
+</script>
+
 </body>
 
 </html>
